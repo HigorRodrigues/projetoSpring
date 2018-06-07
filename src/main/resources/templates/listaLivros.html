@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
+	<head>
+		<link th:href="@{css/bootstrap.min.css}" rel="stylesheet" />
+		<link th:href="@{css/bootstrap-theme.min.css}" rel="stylesheet" />
+		<title>Livraria</title>
+	</head>
+
+	<body>
+		<div class="panel panel-default" style="margin: 10px">
+			<div class="panel-heading">
+				<h1 class="panel-title">Lista de Livros</h1>
+			</div>
+			<div class="panel-body">
+				<form class="form-inline" method="POST" 
+				    th:object="${livro}"
+				    th:action="@{/livros}"
+					style="margin: 20px 0">
+					<div class="form-group">
+						<input type="hidden" th:field="*{id}">
+						<input type="text" class="form-control" placeholder="ISBN"
+							th:field="*{ISBN}" /> 
+						<input type="text" class="form-control"
+							placeholder="Título" th:field="*{titulo}" />
+						<button type="submit" class="btn btn-secondary">Adicionar</button>
+					</div>
+				</form>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ISBN</th>
+							<th>Título</th>
+							<th colspan=2> Ação </th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="livro : ${livros}">
+							<td th:text="${livro.ISBN}"></td>
+							<td th:text="${livro.titulo}"></td>
+							
+							<td>
+							<a th:href="@{/livros/alterar/}+${livro.id}" class="glyphicon glyphicon­‐pencil">Alterar</a>
+							</td>
+							<td>
+							<a th:href="@{/livros/excluir/}+${livro.id}" 
+							   class="glyphicon glyphicon­‐trash">Excluir</a>
+							</td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>	
