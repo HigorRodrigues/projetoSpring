@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    layout:decorate="/layout">
 	
 	<head>
-		<link th:href="@{css/bootstrap.min.css}" rel="stylesheet" />
-		<link th:href="@{css/bootstrap-theme.min.css}" rel="stylesheet" />
-		<title>Livraria</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"	/>
+		
 	</head>
 
 	<body>
-		<div class="panel panel-default" style="margin: 10px">
+	
+		<h1	layout:fragment="header"></h1>
+		
+		<div layout:fragment="content" class="panel panel-default" style="margin: 10px">
 			<div class="panel-heading">
 				<h1 class="panel-title">Lista de Livros</h1>
 			</div>
