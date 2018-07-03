@@ -4,8 +4,7 @@
     layout:decorate="/layout">
 	
 	<head>
-		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"	/>
-		
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"	/>		
 	</head>
 
 	<body>
@@ -27,6 +26,10 @@
 							th:field="*{ISBN}" /> 
 						<input type="text" class="form-control"
 							placeholder="Título" th:field="*{titulo}" />
+						<select class="form-control"  id="autor" th:field="*{autor}">
+							<option th:each="f : ${autores}" th:value="${f.id}" th:text="${f.nome}">
+							</option>
+	                    </select>
 						<button type="submit" class="btn btn-secondary">Adicionar</button>
 					</div>
 				</form>
@@ -35,6 +38,7 @@
 						<tr>
 							<th>ISBN</th>
 							<th>Título</th>
+							<th>Autor</th>
 							<th colspan=2> Ação </th>
 						</tr>
 					</thead>
@@ -42,7 +46,7 @@
 						<tr th:each="livro : ${livros}">
 							<td th:text="${livro.ISBN}"></td>
 							<td th:text="${livro.titulo}"></td>
-							
+							<td th:text="${livro.autor.nome}">
 							<td>
 							<a th:href="@{/livros/alterar/}+${livro.id}" class="glyphicon glyphicon­‐pencil">Alterar</a>
 							</td>

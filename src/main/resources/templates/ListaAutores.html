@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="/layout">
+
+<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"	/>
+		
+	</head>
+	
+	<section layout:fragment="header">
+
+	<div class="panel panel-default" style="margin: 10px">
+	<div class="panel-heading">
+		<h1 class="panel-title">Lista de Autores</h1>
+	</div>
+	<div class="panel-body">
+	<form class="form-inline" method="POST" 
+	th:object="${autor}" th:action="@{/autores}"
+		style="margin: 20px 0">
+		<div class="form-group">
+		<input type="hidden" th:field="*{id}">
+		<input type="text" class="form-control" placeholder="Nome"
+		th:field="*{nome}" />
+		<input type="text" class="form-control" placeholder="Email"
+		th:field="*{email}" /> 
+		<button type="submit" class="btn btn-primary">Adicionar</button>
+		</div>
+	</form>
+	<table class="table">
+	<thead>
+	<tr>
+	<th>#</th>
+	<th>Nome</th>
+	<th>Email</th>
+	<th colspan=2> Ação </th>
+	</tr>
+	</thead>
+<tbody>
+<tr th:each="autor : ${autores}">
+<td th:text="${autor.id}"></td>
+<td th:text="${autor.nome}"></td>
+<td th:text="${autor.email}"></td>
+<td><a th:href="@{/autores/alterar/}+${autor.id}" class="glyphicon glyphicon-pencil"> Alterar</a></td>
+<td>
+<a th:href="@{/autores/excluir/}+${autor.id}" class="glyphicon glyphicon-trash">Excluir </a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</section>
+</html> 
