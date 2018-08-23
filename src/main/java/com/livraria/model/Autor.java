@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Autor implements Serializable{
 
@@ -19,6 +21,8 @@ public class Autor implements Serializable{
 	
 	private String nome;
 	private String email;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)
 	private Set<Livro> livros;
 	
