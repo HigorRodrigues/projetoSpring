@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.livraria.model.Autor;
+import com.livraria.model.Editora;
 import com.livraria.model.Livro;
 import com.livraria.repository.Autores;
+import com.livraria.repository.Editoras;
 import com.livraria.repository.Livros;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
@@ -25,10 +27,19 @@ public class LivroController {
 
 	@Autowired
 	private Livros livros;
-
 	@Autowired
 	private Autores autores;
+	@Autowired
+	private Editoras editoras;
 	
+	public Editoras getEditoras() {
+		return editoras;
+	}
+
+	public void setEditoras(Editoras editoras) {
+		this.editoras = editoras;
+	}
+
 	public Autores getAutores() {
 		return autores;
 	}
@@ -42,6 +53,8 @@ public class LivroController {
 		ModelAndView mv = new ModelAndView("listaLivros");
 		mv.addObject(new Autor());
 		mv.addObject("autores",autores.findAll());
+		mv.addObject( new Editora() );
+		mv.addObject("editoras", editoras.findAll() );
 		mv.addObject(new Livro());
 		mv.addObject("livros", livros.findAll() );
 		return mv;
@@ -64,6 +77,7 @@ public class LivroController {
 		ModelAndView mv = new ModelAndView("listaLivros");
 		mv.addObject(new Autor());
 		mv.addObject("autores",autores.findAll());
+		mv.addObject("editoras",editoras.findAll());
 		mv.addObject("livros", livros.findAll());
 		Livro livro = livros.findById(id).get();
 		mv.addObject(livro);

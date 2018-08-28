@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-@SuppressWarnings("deprecation")
 @Entity
 public class Livro implements Serializable {
 
@@ -27,6 +26,18 @@ public class Livro implements Serializable {
     @JoinColumn(name = "autor_id")
 	private Autor autor;
 	
+	@ManyToOne
+    @JoinColumn(name = "editora_id")
+	private Editora editora;
+	
+	public Editora getEditora() {
+		return editora;
+	}
+
+	public void setEditora(Editora editora) {
+		this.editora = editora;
+	}
+
 	public Autor getAutor() {
 		return autor;
 	}

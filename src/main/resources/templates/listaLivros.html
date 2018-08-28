@@ -30,6 +30,9 @@
 							<option th:each="f : ${autores}" th:value="${f.id}" th:text="${f.nome}">
 							</option>
 	                    </select>
+	                    <select class="form-control"  id="editora" th:field="*{editora}">
+							<option th:each="e : ${editoras}" th:value="${e.id}" th:text="${e.nome}"></option>
+	                    </select>
 						<button type="submit" class="btn btn-secondary">Adicionar</button>
 					</div>
 				</form>
@@ -39,6 +42,7 @@
 							<th>ISBN</th>
 							<th>Título</th>
 							<th>Autor</th>
+							<th>Editora</th>
 							<th colspan=2> Ação </th>
 						</tr>
 					</thead>
@@ -47,7 +51,8 @@
 							<td th:text="${livro.ISBN}"></td>
 							<td th:text="${livro.titulo}"></td>
 							<td th:text="${livro.autor.nome}">
-							<td>
+							<td th:text="${livro.editora.nome}"></td>
+							<td>							
 							<a th:href="@{/livros/alterar/}+${livro.id}" class="glyphicon glyphicon­‐pencil">Alterar</a>
 							</td>
 							<td>
